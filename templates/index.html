@@ -1,17 +1,30 @@
 <html>
   <body>
     <form name="search" method="POST" action="/">
-      <input type="text" name="search"/>
-      <input type="submit" />
+      <input type="text" name="search" value="{{ search_form.search }}"/>
+      <br>
+      <div style="display: inline-block;">
+        <select style="display: inline" name="location">
+          <option value="43.463340,-80.521915,">Waterloo</option>
+          <option value="43.224760,-79.719050,">Stoney Creek</option>
+          <option value="43.541629,-80.249096,">Guelph</option>
+        </select>
+        <p style="display: inline">Within<input type="text" name="within" value="{{ search_form.within }}"/>Mi</p>
+      </div>
+      <br>
+      <input type="submit" value="Search"/>
     </form>
+
     <h1>Understanding #Hashtags</h1>
-    {% for item in data %}
-      <p>{{ item.text }}</p>
-      <p><b>- {{ item.name }}</b></p>
-      <p>Date: {{ item.created_at}}</p>
-      <p>Retweets: {{ item.retweets }}</p>
-      <p>Location: {{ item.location}}</p>
-      <hr>
-    {% endfor %}
+    {% if data %}
+      {% for item in data %}
+        <p>{{ item.text|safe }}</p>
+        <p><b>- {{ item.name }}</b></p>
+        <p>Date: {{ item.created_at}}</p>
+        <p>Retweets: {{ item.retweet_count }}</p>
+        <p>Location: {{ item.location}}</p>
+        <hr>
+      {% endfor %}
+    {% endif %}
   </body>
 </html>
