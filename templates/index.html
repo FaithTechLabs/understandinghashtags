@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <form name="search" method="POST" action="/">
+      <input type="text" name="search"/>
+      <input type="submit" />
+    </form>
+    <h1>Understanding #Hashtags</h1>
+    {% for item in data %}
+      <p>{{ item.text }}</p>
+      <p><b>- {{ item.name }}</b></p>
+      <p>Date: {{ item.created_at}}</p>
+      <p>Retweets: {{ item.retweets }}</p>
+      <p>Location: {{ item.location}}</p>
+      <hr>
+    {% endfor %}
+  </body>
+</html>
