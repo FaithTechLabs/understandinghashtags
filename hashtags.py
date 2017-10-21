@@ -12,6 +12,7 @@ tw_search = TwitterSearch()
 def hello_world():
     data = None
     words = {}
+    search_form = None
     if request.method == "POST":
         geo = request.form.get("location", "")
         within = request.form.get("within", "")
