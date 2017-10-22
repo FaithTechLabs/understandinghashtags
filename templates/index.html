@@ -42,7 +42,7 @@
         </p>
 
         <h1 id='search'>Search for Tweets</h1>
-        <form name="search" method="POST" action="/">
+        <form name="search" method="POST" action="/#search">
           Search for: <input type="text" name="search" value="{{ search_form.search }}"/>
           <br>
           In:
@@ -76,7 +76,9 @@
                   {{ item.month }} {{ item.day }}, {{ item.year}}
                   at
                   {{ item.hour }}:{{ item.minutes }}{{ item.ampm }}
-                  in {{ item.location }}
+                  {% if item.location %}
+                    in {{ item.location }}
+                  {% endif %}
                 </span>
                 <div class='tweet-content'>
                   {{ item.text }}
