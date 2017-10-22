@@ -128,3 +128,12 @@ h4 {
 h2 {
   font-weight: 400;
 }
+
+h2 b {
+  color: #46b5de;
+}
+
+img {
+  margin: 0 auto;
+  text-align: center;
+}

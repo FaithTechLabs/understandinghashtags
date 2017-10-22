@@ -8,8 +8,9 @@
       <div class='content-container'>
         <h3>Understanding Hashtags</h3>
         <div>
-          <h3><a href='#about'>Conversations</a></h3>
+          <h3><a href='#about'>About</a></h3>
           <h3><a href='#search'>Search</a></h3>
+          <h3><a href='#graphs'>Graphs</a></h3>
         </div>
       </div>
     </div>
@@ -136,7 +137,7 @@
           </ul>
         </p>
 
-        <br>
+
         <h2>Understanding <b>#MeToo</b></h2>
 
         <p>
@@ -220,6 +221,11 @@
             {% endfor %}
           </div>
         {% endif %}
+
+        <h1 id='graphs'>Analytics</h1>
+        <img src="{{ url_for('static',filename='images/graph1.png') }}">
+        <br><br>
+        <img src="{{ url_for('static',filename='images/graph2.png') }}">
       </div>
     </div>
   </body>
