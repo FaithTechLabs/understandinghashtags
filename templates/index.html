@@ -203,11 +203,28 @@
           <br>
           <input class='btn' type="submit" value="Search"/>
         </form>
+        <!--
+        {% if colours %}
+          <table>
+          {% for key, value in colours.items() %}
+            <tr>
+              <td>
+                <div style="width: 30px; height: 30px; background-color: {{ key }}; display: inline-block;">
+                </div>
+              </td>
+              <td>
+                <p class="display: inline;">{{ value }}</p>
+              </td>
+            </tr>
+          {% endfor %}
+          </table>
+        {% endif %}
+        -->
 
         {% if data %}
           <div class='tweet-container'>
             {% for item in data %}
-              <div class='tweet'>
+            <div class='tweet' style="border-left: 2px solid #{{ item.colour }};">
                 <!-- <p>{{ item.text|safe }}</p>
                 <p><b>- {{ item.name }}</b></p>
                 <p>Date: {{ item.created_at}}</p>

@@ -54,6 +54,24 @@ class TwitterSearch():
 
         return count
 
+
+    def colours(self, search, geo=False, result_type='', count=50, mentions=False):
+        count = 0
+        #day = day.strftime("%Y-%m-%d")
+        colours = {}
+        query = '{} exclude:retweets exclude:replies'.format(search)
+        if geo:
+            search_results = self.twitter.search(q=query, count=count, lang="en", is_quote_status=False, geocode=geo, result_type=result_type)
+        else:
+            search_results = self.twitter.search(q=query, count=count, lang="en", is_quote_status=False)
+
+        for tweet in search_results['statuses']:
+            try:
+                colours[tweet["user"]["profile_sidebar_border_color"]] = colours[tweet["user"]["profile_sidebar_border_color"]] + 1
+            except:
+                colours[tweet["user"]["profile_sidebar_border_color"]] = 1
+        return colours
+
     def run_search(self, search, geo=False, result_type='', count=50, mentions=False):
         query = '{} exclude:retweets exclude:replies'.format(search)
 
@@ -80,7 +98,8 @@ class TwitterSearch():
                 "retweet_count": tweet["retweet_count"],
                 "location": tweet["user"]["location"],
                 "date": date.strftime("%b %d"),
-                "time": date.strftime("%I:%M %p")
+                "time": date.strftime("%I:%M %p"),
+                "colour": tweet["user"]["profile_sidebar_border_color"]
             }
             list_data.append(data)
         return list_data
