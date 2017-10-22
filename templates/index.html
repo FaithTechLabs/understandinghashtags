@@ -73,9 +73,9 @@
                 <a href='https://twitter.com/{{ item.name }}' target='_blank'>@{{ item.name }}</a>
                 <span class='muted'>
                   on
-                  {{ item.month }} {{ item.day }}, {{ item.year}}
+                  {{ item.date }}
                   at
-                  {{ item.hour }}:{{ item.minutes }}{{ item.ampm }}
+                  {{ item.time }}
                   {% if item.location %}
                     in {{ item.location }}
                   {% endif %}
