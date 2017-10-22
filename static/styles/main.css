@@ -1,0 +1,117 @@
+.test {
+  border: 1px solid #f00;
+}
+
+body {
+  color: #444;
+  font-family: Helvetica, Sans-Serif;
+  margin: 0;
+  padding: 0;
+}
+
+.top-banner,
+.main {
+  text-align: center;
+}
+
+.content-container {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 16px;
+  text-align: left;
+}
+
+.top-banner h3 {
+  margin: 21px 0;
+}
+
+.top-banner .content-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-banner .content-container div {
+  display: flex;
+}
+
+.top-banner .content-container div h3:not(:last-child) {
+  margin-right: 14px;
+}
+
+.hero {
+  background-color: #46b5de;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 90px;
+  margin: 0;
+  padding: 60px 0 40px;
+  text-align: center;
+}
+
+.main {
+  margin: 24px 0; }
+
+.tweet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.muted {
+  color: #999;
+}
+
+.tweet {
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  max-width: calc(50% - 32px);
+  padding: 12px;
+  width: 100%;
+}
+
+.tweet-content {
+  margin-top: 12px;
+}
+
+a {
+  color: #46b5de;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input[type=text],
+select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type=text] {
+  padding: 6px;
+}
+
+select {
+  margin: 12px 0;
+  background-color: #fff;
+}
+
+.btn {
+  background-color: #46b5de;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 20px;
+  transition: background-color 0.3s;
+}
+
+
+.btn:hover {
+  background-color: #63c5e9;
+  cursor: pointer;
+}

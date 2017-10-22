@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask import render_template
 from twitter_search import TwitterSearch
+from collections import Counter
 import re
 
 app = Flask(__name__)
@@ -12,17 +13,19 @@ def hello_world():
     data = None
     words = {}
     search_form = None
+    search = "#metoo"
+    #search = ""
     if request.method == "POST":
         geo = request.form.get("location", "")
         within = request.form.get("within", "")
-        search = request.form.get("search", "")
+        search += " " + request.form.get("search", "")
         search_form = request.form
 
         if not geo and not within:
             geo = "43.423681,-80.465330,"
             within = "25mi"
-        print(geo + within)
-        data = tw_search.run_search(search, count=50, geo=geo + within + "mi")
+        data = tw_search.run_search(search, count=100, geo=geo + within + "mi")
     elif request.method == "GET":
-        data = tw_search.run_search("", count=5, geo="43.423681,-80.465330,25mi")
+        data = tw_search.run_search(search, count=100, geo="43.423681,-80.465330,25mi")
+    #emojis = tw_search.get_emojis()
     return render_template("index.html", data=data, search_form=search_form)

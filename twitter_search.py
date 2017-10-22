@@ -4,6 +4,23 @@ import html
 import os
 import re
 from auth_keys import *
+from datetime import datetime, timedelta
+from pytz import timezone
+
+MONTHS = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec"
+]
 
 EMOJI_REGEX = re.compile('\\\\U000\w+')
 
@@ -26,13 +43,22 @@ class TwitterSearch():
         self.search_results = search_results
         list_data = []
         for tweet in search_results['statuses']:
+
+            date = tweet["created_at"]
+            tz = timezone('EST')
+            date = datetime.strptime(date, '%a %b %d %H:%M:%S %z %Y')
+            tzoffset = tz.utcoffset(date)
+            date = date + tzoffset
+
             data = {
                 "name": tweet["user"]["screen_name"],
                 "text": tweet["text"],
-                "created_at": tweet["created_at"],
+                "created_at": date,
                 "favorite_count": tweet["favorite_count"],
                 "retweet_count": tweet["retweet_count"],
                 "location": tweet["user"]["location"],
+                "date": date.strftime("%b %d"),
+                "time": date.strftime("%I:%M %p")
             }
             list_data.append(data)
         return list_data
@@ -43,6 +69,5 @@ class TwitterSearch():
             emojis = EMOJI_REGEX.findall(str(tweet["text"].encode("unicode_escape")))
             if emojis:
                 for emoji in emojis:
-                    print(emoji.encode('utf-8').decode("utf-8"))
                     data.append(emoji.encode('utf-8').decode("utf-8"))
         return data

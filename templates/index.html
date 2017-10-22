@@ -1,30 +1,93 @@
 <html>
+  <head>
+    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+    <link rel='stylesheet' href="{{ url_for('static',filename='styles/main.css') }}">
+  </head>
   <body>
-    <form name="search" method="POST" action="/">
-      <input type="text" name="search" value="{{ search_form.search }}"/>
-      <br>
-      <div style="display: inline-block;">
-        <select style="display: inline" name="location">
-          <option value="43.463340,-80.521915,">Waterloo</option>
-          <option value="43.224760,-79.719050,">Stoney Creek</option>
-          <option value="43.541629,-80.249096,">Guelph</option>
-        </select>
-        <p style="display: inline">Within<input type="text" name="within" value="{{ search_form.within }}"/>Mi</p>
+    <div class='top-banner'>
+      <div class='content-container'>
+        <h3>Understanding Hashtags</h3>
+        <div>
+          <h3><a href='#about'>Conversations</a></h3>
+          <h3><a href='#search'>Search</a></h3>
+        </div>
       </div>
-      <br>
-      <input type="submit" value="Search"/>
-    </form>
+    </div>
+    <div class='hero'>
+      <div class='content-container'>
+        <h1>#metoo</h1>
+      </div>
+    </div>
+    <div class='main'>
+      <div class='content-container'>
+        <h1 id='about'>What are the conversations around #metoo?</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium nec odio id efficitur. Vivamus gravida neque est, sit amet rutrum orci sodales id. Mauris sed eros sit amet nisi iaculis semper. Sed interdum mollis rhoncus. Nunc faucibus ac turpis vitae eleifend. Morbi dolor orci, elementum et magna id, vulputate luctus neque. Morbi sodales magna quis lacus condimentum ullamcorper. Quisque hendrerit odio quis vulputate efficitur. Praesent et ultrices purus, vel lacinia elit. Cras neque libero, venenatis sit amet risus quis, mollis interdum erat.
+        </p>
 
-    <h1>Understanding #Hashtags</h1>
-    {% if data %}
-      {% for item in data %}
-        <p>{{ item.text|safe }}</p>
-        <p><b>- {{ item.name }}</b></p>
-        <p>Date: {{ item.created_at}}</p>
-        <p>Retweets: {{ item.retweet_count }}</p>
-        <p>Location: {{ item.location}}</p>
-        <hr>
-      {% endfor %}
-    {% endif %}
+        <p>
+          Proin quis purus elementum risus euismod ultrices in non quam. Nam tempus fermentum fringilla. Curabitur libero purus, fringilla sed diam dictum, rutrum luctus orci. Quisque nibh lacus, luctus sit amet orci ut, ultrices pellentesque felis. Proin vel massa feugiat, faucibus nulla vel, dignissim lectus. Quisque id tincidunt sapien. Donec interdum felis nec sem dictum, euismod condimentum ipsum dictum. Suspendisse fermentum molestie nunc, ac interdum justo placerat ac. In luctus erat justo, vitae vehicula eros luctus a.
+        </p>
+
+        <p>
+          Donec condimentum ultrices suscipit. Mauris quis condimentum sem. Pellentesque quis ipsum eget turpis luctus condimentum sit amet id dolor. Pellentesque faucibus mauris nunc, et tempor orci vehicula quis. Ut lobortis dui velit, non convallis nibh pharetra quis. Quisque vulputate mollis nisl nec feugiat. Etiam ligula arcu, luctus nec placerat in, lobortis sit amet nisi. Proin a tellus sem. Phasellus sit amet euismod sem. Aenean ut nulla id augue feugiat tincidunt. Aenean in nulla leo. Mauris porttitor, purus in sollicitudin aliquet, mauris sem suscipit mauris, sed malesuada ex mauris vel mi. Ut lacinia felis tincidunt rutrum malesuada. Nulla ac eros ut mi facilisis convallis.
+        </p>
+
+        <p>
+          Sed eget accumsan sapien. In dictum nisl at nibh pellentesque, sit amet ultricies ipsum venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet nunc ac odio tincidunt pharetra vel ac lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer interdum a eros condimentum placerat. Nunc sit amet rhoncus nunc, quis vulputate nulla. Donec ut nunc consequat, bibendum lectus non, eleifend risus. Morbi vitae urna mattis, ultrices mauris non, volutpat mi. Nunc dignissim rhoncus quam, ac ultricies magna blandit non. Cras aliquam laoreet est, ut interdum urna. Praesent eget lectus sit amet sem viverra accumsan. Integer consequat arcu eu ligula pharetra, eu tristique orci tincidunt. Suspendisse ac neque sit amet nibh placerat tempus. Ut a rhoncus augue. Nulla iaculis tincidunt mauris, vitae faucibus urna condimentum et.
+        </p>
+
+        <p>
+          Proin nisi justo, interdum consequat congue elementum, pulvinar at quam. Nullam orci leo, cursus nec ante vel, posuere gravida felis. Nunc vulputate arcu et purus ullamcorper rhoncus. Pellentesque fermentum enim nec magna gravida viverra. Donec at tellus faucibus sapien auctor rutrum eu at ex. Vestibulum eu aliquam diam. Etiam ante enim, pellentesque eget egestas ut, sollicitudin quis felis. Nunc semper lacus at massa congue luctus.
+        </p>
+
+        <h1 id='search'>Search for Tweets</h1>
+        <form name="search" method="POST" action="/#search">
+          Search for: <input type="text" name="search" value="{{ search_form.search }}"/>
+          <br>
+          In:
+          <select style="display: inline" name="location">
+            <option value="43.463340,-80.521915,">Waterloo</option>
+            <option value="43.224760,-79.719050,">Stoney Creek</option>
+            <option value="43.541629,-80.249096,">Guelph</option>
+          </select>
+          <br>
+          <div class='inline-block'>
+            <span>Within:</span>
+            <input type="text" name="within" value="{{ search_form.within }}"/>
+            <span>miles</span>
+          </div>
+          <br>
+          <input class='btn' type="submit" value="Search"/>
+        </form>
+
+        {% if data %}
+          <div class='tweet-container'>
+            {% for item in data %}
+              <div class='tweet'>
+                <!-- <p>{{ item.text|safe }}</p>
+                <p><b>- {{ item.name }}</b></p>
+                <p>Date: {{ item.created_at}}</p>
+                <p>Retweets: {{ item.retweet_count }}</p>
+                <p>Location: {{ item.location}}</p> -->
+                <a href='https://twitter.com/{{ item.name }}' target='_blank'>@{{ item.name }}</a>
+                <span class='muted'>
+                  on
+                  {{ item.month }} {{ item.day }}, {{ item.year}}
+                  at
+                  {{ item.hour }}:{{ item.minutes }}{{ item.ampm }}
+                  {% if item.location %}
+                    in {{ item.location }}
+                  {% endif %}
+                </span>
+                <div class='tweet-content'>
+                  {{ item.text }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
   </body>
 </html>
