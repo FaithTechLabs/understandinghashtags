@@ -31,6 +31,28 @@ class TwitterSearch():
         self.twitter = twitter
         self.search_results = ""
 
+    def count(self, search, geo=False, result_type='', count=50, mentions=False):
+        count = 0
+        tz = timezone('EST')
+        day = datetime.now() - timedelta(days=1)
+        tzoffset = tz.utcoffset(day)
+        day = day.replace(tzinfo=tz)
+        #day = day.strftime("%Y-%m-%d")
+        query = '{} exclude:retweets exclude:replies'.format(search)
+        if geo:
+            search_results = self.twitter.search(q=query, count=count, lang="en", is_quote_status=False, geocode=geo, result_type=result_type, until=day)
+        else:
+            search_results = self.twitter.search(q=query, count=count, lang="en", is_quote_status=False, until=day)
+
+        for tweet in search_results['statuses']:
+            date = tweet["created_at"]
+            date = datetime.strptime(date, '%a %b %d %H:%M:%S %z %Y')
+            tzoffset = tz.utcoffset(date)
+            date = date + tzoffset
+            if date >= day:
+                count = count + 1
+
+        return count
 
     def run_search(self, search, geo=False, result_type='', count=50, mentions=False):
         query = '{} exclude:retweets exclude:replies'.format(search)
