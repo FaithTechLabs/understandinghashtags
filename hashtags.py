@@ -28,7 +28,7 @@ def hello_world():
         data = tw_search.run_search(search, count=100, geo=geo + within + "mi")
         colours = tw_search.colours(search, count=100, geo=geo + within + "mi")
     elif request.method == "GET":
-        data = tw_search.run_search(search, count=100, geo="43.423681,-80.465330,25mi")
+        data = tw_search.run_search(search, count=6, geo="43.423681,-80.465330,25mi")
         colours = tw_search.colours(search, count=100, geo="43.423681,-80.465330,25mi")
 
     counts["waterloo"] = tw_search.count(search, count=100, geo="43.423681,-80.465330,25mi")
